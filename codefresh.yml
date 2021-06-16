@@ -28,8 +28,10 @@ steps:
     
   scan_image:
     title: Scanning image with Prisma Cloud Compute
-    image: ${{build_image}}
-    commands:
-      # --containerized is used because Codefresh SaaS runtime environment doesn't allow access to the Docker socket
-      # https://support.codefresh.io/hc/en-us/articles/360017901040-How-to-Access-the-Docker-Daemon-in-a-Codefresh-build
-      - ./twistcli images scan --address $PCC_CONSOLE_URL --user $PCC_USER --password $PCC_PASS --containerized --details ${{steps.build_image.imageName}}:${{CF_REVISION}}
+    type: freestyle
+    working_directory: /
+    arguments:
+      image: ${{build_image}}
+      commands:
+        - ls
+        - ./twistcli images scan --address $PCC_CONSOLE_URL --user $PCC_USER --password $PCC_PASS --containerized --details ${{steps.build_image.imageName}}:${{CF_REVISION}}
