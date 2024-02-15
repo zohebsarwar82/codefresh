@@ -1,1 +1,1 @@
-FROM httpd:latest
+FROM docker.io/library/httpd:latest
