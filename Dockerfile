@@ -1,1 +1,1 @@
-FROM docker.io/library/httpd:latest
+FROM alpine:latest
